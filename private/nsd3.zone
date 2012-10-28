@@ -24,8 +24,8 @@ webmail IN CNAME ghs.google.com.
 calendar IN CNAME ghs.google.com.
 
 ; The main IP.
-@ IN A 178.79.180.110
-www IN A 178.79.180.110
+@ IN A 109.74.201.104
+www IN A 109.74.201.104
 
 ; Nameservers.
 ns001 IN A 69.93.127.10
@@ -35,4 +35,4 @@ ns100 IN A 207.192.70.10
 ns101 IN A 109.74.194.10
 
 ; Wildcard!
-* IN A 178.79.180.110
+* IN A 109.74.201.104
