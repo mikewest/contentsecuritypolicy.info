@@ -1,0 +1,4 @@
+contentsecuritypolicy.info
+==========================
+
+contentsecuritypolicy.info
