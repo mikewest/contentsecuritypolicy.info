@@ -1,0 +1,38 @@
+$ORIGIN contentsecuritypolicy.info.
+$TTL 300
+@ IN SOA ns001.contentsecuritypolicy.info. mike.mikewest.org. (
+           2012102862
+           14400
+           14400
+           1209600
+           300
+           )
+
+@ NS ns001.contentsecuritypolicy.info.
+@ NS ns010.contentsecuritypolicy.info.
+@ NS ns011.contentsecuritypolicy.info.
+@ NS ns100.contentsecuritypolicy.info.
+@ NS ns101.contentsecuritypolicy.info.
+
+; Google Apps
+@ MX 10 aspmx.l.google.com.
+@ MX 20 alt1.aspmx.l.google.com.
+@ MX 20 alt2.aspmx.l.google.com.
+@ MX 30 aspmx2.googlemail.com.
+@ MX 30 aspmx3.googlemail.com.
+webmail IN CNAME ghs.google.com.
+calendar IN CNAME ghs.google.com.
+
+; The main IP.
+@ IN A 178.79.180.110
+www IN A 178.79.180.110
+
+; Nameservers.
+ns001 IN A 69.93.127.10
+ns010 IN A 65.19.178.10
+ns011 IN A 75.127.96.10
+ns100 IN A 207.192.70.10
+ns101 IN A 109.74.194.10
+
+; Wildcard!
+* IN A 178.79.180.110
