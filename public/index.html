@@ -21,12 +21,14 @@
       code {
         font: 18px/1.4 'Inconsolata', monospace;
         background: #FFF;
-        padding: 3px;
+        padding: 1px;
       }
       header {
         text-align: left;
         color: rgba(0,0,0,0.9);
         padding: 50px 0;
+        background: url(csp.jpg) center right no-repeat;
+        background-size: contain;
       }
       h1 {
         font: 40px/1.2 'Open Sans';
@@ -55,6 +57,10 @@
         color: #145BB8;
         text-decoration: none;
       }
+
+      ul {
+        padding: 0;
+      }
     </style>
   </head>
   <body>
@@ -72,18 +78,17 @@
       user input</a> and contextually escaping everything you write out to the
       page. However, your advisaries are clever and numerous, and your time and
       attention are limited. You will slip up. A small hole will open. It will
-      be discovered and exploited: another successful cross-site scripting. So
-      it goes.
+      be discovered and exploited: you will be sad. So it goes.
     </p>
 
     <p>Or does it?</p>
 
     <p>
-      If you've protected your site by setting a <strong>Content Security
-      Policy</strong>, you'll add significant depth to your defenses. Even if
-      an attacker finds and uses a bug to inject content, her exploitation
-      options will be sincerely limited. Site defacement or execution of
-      untrusted script will be <em>significantly</em> more difficult.
+      Protecting your site by setting a <strong>Content Security Policy</strong>
+      will add significant depth to your defenses, mitigating the risk of
+      content injection attacks by radically reducing their potential effect.
+      Here, you'll learn how it works, and how you can deploy it for your own
+      sites.
     </p>
 
     <h2>Content Securawhat?</h2>
@@ -94,25 +99,48 @@
       <code>&lt;script&gt;doSomethingUseful();&lt;/script&gt;</code> looks
       exactly the same to a browser as
       <code>&lt;script&gt;alert('xss');&lt;/script&gt;</code> when included on a
-      page. Content Security Policy (CSP) gives you the means to explain your
-      intentions more clearly to a browser, providing it with the information
-      necessary to make well-founded judgements regarding a specific piece of
-      content based on it's origin. A typical policy might read "Allow only
-      content that I deliver myself, except for images. Images are fine to load
-      from anywhere." Et voilà, the browser has clear rules it can follow!
-      Content that isn't delivered from your origin should be rejected. That's
-      easy.
+      page. Content Security Policy (CSP) gives you a way to teach the browser
+      about the content you <em>mean</em> to deliver, allowing it to block
+      everything that doesn't match a simple set of rules.
     </p>
 
     <p>
-      A page's policy is best delivered via an especially creatively named HTTP
-      header: <code>Content-Security-Policy</code>. For example, the example
-      policy described above maps to:
+      These rules are delivered via an especially creatively named HTTP
+      header: <code>Content-Security-Policy</code>. The policy consists of
+      various directives that dictate how a certain resource type should be
+      handled, each separated by a semicolon.  A few examples should make the
+      broad syntax clear:
     </p>
-    <pre class="prettyprint lang-csp"><code>Content-Security-Policy: default-src 'self';
-                         img-src *</code></pre>
 
-    <h3>What should I do?</h3>
+    <ul>
+      <li>
+        <p>
+          <strong>SSL Only</strong>: A developer wants to ensure that every page
+          of her site <em>only</em> loads resources over secure channels. She
+          can enforce this restriction by setting a policy that says "Only
+          render or execute resources that are delivered over HTTPS." Translated
+          into CSP, that reads:
+        </p>
+        <pre class="prettyprint lang-csp"><code>Content-Security-Policy: default-src https:</code></pre>
+      </li>
+      <li>
+        <p>
+          <strong>Me, me, me, and only me</strong>: A bank wants to ensure that
+          <em>only</em> resources from its content delivery network load, and
+          it's quite sure that it only uses JavaScript, CSS, and images (no
+          plugins, no XMLHttpRequest, no web fonts, etc.). It would like a
+          policy that says "Block all resources of all types, except for images,
+          style, and script loaded from https://cdn.example.com." Translated to
+          CSP, that reads:
+        </p>
+        <pre class="prettyprint lang-csp"><code>Content-Security-Policy:
+    default-src 'none';
+    img-src https://cdn.example.com;
+    script-src https://cdn.example.com;
+    style-src https://cdn.example.com</code></pre>
+      </li>
+    </ul>
+
 
     <p>
       First and foremost, block inline script by setting a policy that does not
