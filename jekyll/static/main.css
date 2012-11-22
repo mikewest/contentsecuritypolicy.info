@@ -1,0 +1,74 @@
+
+html {
+}
+
+body {
+  background: #EEE;
+  font: 16px/1.4 arial, sans-serif;
+  width: 90%;
+  max-width: 700px;
+  min-width: 550px;
+  margin: 0 auto;
+}
+
+code {
+  font: 18px/1.4 'Inconsolata', monospace;
+  background: #FFF;
+  padding: 1px;
+}
+
+header {
+  text-align: left;
+  color: rgba(0,0,0,0.9);
+  padding: 50px 0;
+  background: url(csp.png) center right no-repeat;
+  background-size: contain;
+}
+
+h1 {
+  font: 40px/1.2 'Open Sans';
+  font-weight: 800;
+}
+
+h2 {
+  font: 34px/1 'Open Sans';
+  font-weight: 300;
+}
+
+h3 {
+  font: 24px/1 'Open Sans';
+  font-weight: 700;
+}
+
+h4 {
+   font-weight: 700;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+h2 code {
+  font-size: 34px;
+}
+
+pre {
+  background: #333;
+  border-radius: 5px;
+  color: #EEE;
+  padding: 1em;
+}
+
+pre code {
+  font-size: 25px;
+  background: transparent;
+}
+
+a, a:visited {
+  color: #145BB8;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0;
+}

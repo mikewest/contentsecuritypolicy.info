@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf8'>
+    <meta http-equiv='Content-Security-Policy' content='default-src *'>
+    <title>
+      Content Security Policy
+      {% if page.title %}
+        &mdash; {{ page.title }}
+      {% endif %}
+    </title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
+    <link href='/static/starburst.css' rel='stylesheet' type='text/css'>
+    <link href='/static/main.css' rel='stylesheet' type='text/css'>
+    <script defer src='/static/prettify.js'></script>
+    <script defer src='/static/main.js'></script>
+  </head>
+  <body>
+    <header>
+      <h1>Content Security Policy</h1>
+      <h2>Welcome to the post-XSS world</h2>
+    </header>
+
+    {{ content }}
+  </body>
+</html>

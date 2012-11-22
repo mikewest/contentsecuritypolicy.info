@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf8'>
+    <meta http-equiv='Content-Security-Policy' content='default-src *'>
+    <title>
+      Content Security Policy
+      
+    </title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
+    <link href='/static/starburst.css' rel='stylesheet' type='text/css'>
+    <link href='/static/main.css' rel='stylesheet' type='text/css'>
+    <script defer src='/static/prettify.js'></script>
+    <script defer src='/static/main.js'></script>
+  </head>
+  <body>
+    <header>
+      <h1>Content Security Policy</h1>
+      <h2>Welcome to the post-XSS world</h2>
+    </header>
+
+    <h2>
+  The <code>default-src</code> directive
+  &mdash;
+  (<a href='http://www.w3.org/TR/CSP/#default-src'>Spec @ W3C</a>)
+</h2>
+
+<p>The <code>default-src</code> directive, as you might imagine, defines a default source list
+that some other directives will fall back onto if they&#8217;re not explicitly
+specified. Setting a default source list will force the browser to enforce all
+of the following directives, using their value if present in the policy, or the
+value of <code>default-src</code> if they&#8217;re absent:</p>
+
+<ul>
+  <li><a href="/directives/connect-src .html"><code>connect-src </code></a></li>
+  <li><a href="/directives/font-src .html"><code>font-src </code></a></li>
+  <li><a href="/directives/frame-src .html"><code>frame-src </code></a></li>
+  <li><a href="/directives/img-src .html"><code>img-src </code></a></li>
+  <li><a href="/directives/media-src .html"><code>media-src </code></a></li>
+  <li><a href="/directives/object-src .html"><code>object-src </code></a></li>
+  <li><a href="/directives/script-src .html"><code>script-src </code></a></li>
+  <li><a href="/directives/style-src .html"><code>style-src </code></a></li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+
+<p>If <code>default-src</code> is the only directive present, then the directives listed above
+will all use it as their value. That is, a website can ensure that resources
+only load from its own origin by setting the following policy:</p>
+
+<pre><code>Content-Security-Policy: default-src 'self'
+</code></pre>
+
+<p><code>img-src</code> isn&#8217;t listed in the policy, so it uses the default source list. Ditto
+for the other directives listed above.</p>
+
+<hr />
+
+<p>When other directives are present, they override the default completely for a
+specific resource type. For example, given :</p>
+
+<pre><code>Content-Security-Policy: default-src 'self'
+                         img-src https://example.com
+</code></pre>
+
+<p>The default source list contains <code>'self'</code>, meaning that only the current page&#8217;s
+origin is whitelisted. The list of allowed image sources contains
+<code>https://example.com</code>, so we can load images from that origin. Note that there&#8217;s
+no funky inheritance: <code>'self'</code> isn&#8217;t listed explicitly in <code>img-src</code>, so it&#8217;s not
+an acceptable source of images.</p>
+
+<h3 id="usage-recommendations">Usage Recommendations</h3>
+
+<p>The most secure way to roll out a Content Security Policy is to begin by setting
+<code>default-src</code>&#8217;s value to <code>'none'</code>. This locks down the page you&#8217;re protecting,
+ensuring that resources won&#8217;t load unless you explicitly whitelist them. As an
+example, look at the policy set for this very page:</p>
+
+<pre><code>Content-Security-Policy:
+    default-src 'none';
+    img-src 'self';
+    script-src 'self';
+    style-src 'self'
+</code></pre>
+
+<p>We begin by locking things down, and then allow only images, script, and style,
+loaded only from this website&#8217;s origin. Directives that aren&#8217;t specified
+(<code>object-src</code>, for instance) fall back to the <code>default-src</code> source list, and
+are blocked. We highly recommend you do the same.</p>
+
+
+  </body>
+</html>

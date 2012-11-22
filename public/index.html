@@ -27,7 +27,7 @@
         text-align: left;
         color: rgba(0,0,0,0.9);
         padding: 50px 0;
-        background: url(csp.jpg) center right no-repeat;
+        background: url(csp.png) center right no-repeat;
         background-size: contain;
       }
       h1 {
@@ -78,7 +78,7 @@
       user input</a> and contextually escaping everything you write out to the
       page. However, your advisaries are clever and numerous, and your time and
       attention are limited. You will slip up. A small hole will open. It will
-      be discovered and exploited: you will be sad. So it goes.
+      be discovered and exploited. You will be sad. So it goes.
     </p>
 
     <p>Or does it?</p>
@@ -87,8 +87,6 @@
       Protecting your site by setting a <strong>Content Security Policy</strong>
       will add significant depth to your defenses, mitigating the risk of
       content injection attacks by radically reducing their potential effect.
-      Here, you'll learn how it works, and how you can deploy it for your own
-      sites.
     </p>
 
     <h2>Content Securawhat?</h2>
@@ -125,10 +123,10 @@
       </li>
       <li>
         <p>
-          <strong>Me, me, me, and only me</strong>: A bank wants to ensure that
-          <em>only</em> resources from its content delivery network load, and
-          it's quite sure that it only uses JavaScript, CSS, and images (no
-          plugins, no XMLHttpRequest, no web fonts, etc.). It would like a
+          <strong>Lockdown</strong>: A bank wants to ensure that <em>only</em>
+          resources from its content delivery network load, and it's quite sure
+          that it only uses JavaScript, CSS, and images (no plugins, no
+          <code>XMLHttpRequest<code>, no web fonts, etc.). It would like a
           policy that says "Block all resources of all types, except for images,
           style, and script loaded from https://cdn.example.com." Translated to
           CSP, that reads:
