@@ -5,9 +5,9 @@
     <meta http-equiv='Content-Security-Policy' content='default-src *'>
     <title>
       Content Security Policy
-      {% if page.title %}
-        &mdash; {{ page.title }}
-      {% endif %}
+      
+        &mdash; Case Studies
+      
     </title>
     <link href='https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
     <link href='/static/starburst.css' rel='stylesheet' type='text/css'>
@@ -20,13 +20,18 @@
       <h1><a href="/">Content Security Policy</a></h1>
       <h2>Welcome to the post-XSS world</h2>
     </header>
-    <nav class="{{ page.categories }}">
+    <nav class="casestudy">
       <a href="/casestudies/">Case Studies</a>
       <a>Recommendations</a>
       <a href="/directives/">Directives</a>
     </nav>
 
-    {{ content }}
+    <p>Content Security Policy is enjoying rapid adoption from some of the Internet&#8217;s
+most important sites. Kinda. Not really. But wouldn&#8217;t that be awesome?</p>
+
+<p>This will eventually be full of all sorts of examples, walking through each&#8217;s
+policy to understand how it works and why it was chosen.</p>
+
 
     <footer>
       <a href="http://w3.org/TR/CSP">The Content Security Policy 1.1 specification</a>

@@ -16,6 +16,9 @@ code {
   background: #FFF;
   padding: 1px;
 }
+code a {
+  border-bottom: 1px solid #FFF;
+}
 
 header {
   text-align: left;
@@ -29,6 +32,9 @@ h1 {
   font: 40px/1.2 'Open Sans';
   font-weight: 800;
 }
+  h1 a, h1 a:visited {
+    color: #000;
+  }
 
 h2 {
   font: 34px/1 'Open Sans';
@@ -70,5 +76,59 @@ a, a:visited {
 }
 
 ul {
-  padding: 0;
+  padding: 0 0 0 18px;
+}
+
+nav, footer {
+  background: #DDD;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #CCC;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #CCC;
+  margin: 1em 0;
+  border-radius: 5px;
+
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-flex-direction: row;
+}
+
+nav a, nav a:visited,
+footer a, footer a:visited {
+  -webkit-flex: 1;
+
+  display: inline-block;
+  width: 100%;
+  font: 20px/1.2 'Open Sans';
+  font-weight: 700;
+  color: #555;
+  padding: 0.5em;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #CCC;
+  -webkit-transition: 1s all ease;
+  text-align: center;
+}
+
+nav a:first-child,
+footer a:first-child {
+  border-left: none;
+}
+nav a:last-child,
+footer a:last-child {
+  border-right: none;
+}
+
+nav a:hover,
+footer a:hover {
+  color: #000;
+}
+
+footer {
+  background: #CCC;
+  min-height: 1em;
+  border-radius: 5px 5px 0 0;
+  margin: 0;
+}
+footer a, footer a:visited {
+  color: #222;
 }
