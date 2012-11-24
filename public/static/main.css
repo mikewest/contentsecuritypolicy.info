@@ -1,0 +1,148 @@
+
+html {
+}
+
+body {
+  background: #EEE;
+  font: 16px/1.4 arial, sans-serif;
+  width: 90%;
+  max-width: 700px;
+  min-width: 550px;
+  margin: 0 auto;
+}
+
+code {
+  font: 18px/1.4 'Inconsolata', monospace;
+  background: #FFF;
+  padding: 1px;
+}
+code a {
+  border-bottom: 1px solid #FFF;
+}
+
+header {
+  text-align: left;
+  color: rgba(0,0,0,0.9);
+  padding: 50px 0;
+  background: url(csp.png) center right no-repeat;
+  background-size: contain;
+}
+
+h1 {
+  font: 40px/1.2 'Open Sans';
+  font-weight: 800;
+}
+  h1 a, h1 a:visited {
+    color: #000;
+  }
+
+h2 {
+  font: 34px/1 'Open Sans';
+  font-weight: 300;
+}
+
+h3 {
+  font: 24px/1 'Open Sans';
+  font-weight: 700;
+}
+
+h4 {
+   font-weight: 700;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
+
+h2 code {
+  font-size: 34px;
+}
+
+pre {
+  background: #333;
+  border-radius: 5px;
+  color: #EEE;
+  padding: 1em;
+  position: relative;
+}
+
+pre code {
+  font-size: 25px;
+  background: transparent;
+}
+
+pre[data-filename]:after {
+  content: attr(data-filename);
+  background-color: #111;
+  right: 0;
+  top: 0;
+  position: absolute;
+  font-size: 16pt;
+  color: white;
+  padding: 2px 25px;
+  text-transform: uppercase;
+  border-radius: 0 5px 0 0;
+}
+
+a, a:visited {
+  color: #145BB8;
+  text-decoration: none;
+}
+
+ul {
+  padding: 0 0 0 18px;
+}
+
+nav, footer {
+  background: #DDD;
+  border-top: 1px solid #FFF;
+  border-bottom: 1px solid #CCC;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #CCC;
+  margin: 1em 0;
+  border-radius: 5px;
+
+  display: -webkit-flex;
+  -webkit-align-items: center;
+  -webkit-flex-direction: row;
+}
+
+nav a, nav a:visited,
+footer a, footer a:visited {
+  -webkit-flex: 1;
+
+  display: inline-block;
+  width: 100%;
+  font: 20px/1.2 'Open Sans';
+  font-weight: 700;
+  color: #555;
+  padding: 0.5em;
+  border-left: 1px solid #FFF;
+  border-right: 1px solid #CCC;
+  -webkit-transition: 1s all ease;
+  text-align: center;
+}
+
+nav a:first-child,
+footer a:first-child {
+  border-left: none;
+}
+nav a:last-child,
+footer a:last-child {
+  border-right: none;
+}
+
+nav a:hover,
+footer a:hover {
+  color: #000;
+}
+
+footer {
+  background: #CCC;
+  min-height: 1em;
+  border-radius: 5px 5px 0 0;
+  margin: 0;
+}
+footer a, footer a:visited {
+  color: #222;
+}

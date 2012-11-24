@@ -1,184 +1,89 @@
 <!doctype html>
-<html lang="en">
+<html lang='en' dir='ltr'>
   <head>
-    <meta charset="utf8">
-    <meta http-equiv="Content-Security-Policy" content=";TODO">
+    <meta charset='utf8'>
+    <meta http-equiv='Content-Security-Policy' content='default-src *'>
+    <title>
+      Content Security Policy
+      
+    </title>
     <link href='https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
-    <link href='starburst.css' rel='stylesheet' type='text/css'>
-    <script defer src="prettify.js"></script>
-    <script defer src="main.js"></script>
-    <style>
-      html {
-      }
-      body {
-        background: #EEE;
-        font: 16px/1.4 arial, sans-serif;
-        width: 90%;
-        max-width: 700px;
-        min-width: 550px;
-        margin: 0 auto;
-      }
-      code {
-        font: 18px/1.4 'Inconsolata', monospace;
-        background: #FFF;
-        padding: 1px;
-      }
-      header {
-        text-align: left;
-        color: rgba(0,0,0,0.9);
-        padding: 50px 0;
-        background: url(csp.png) center right no-repeat;
-        background-size: contain;
-      }
-      h1 {
-        font: 40px/1.2 'Open Sans';
-        font-weight: 800;
-      }
-      h2 {
-        font: 34px/1 'Open Sans';
-        font-weight: 300;
-      }
-      h1, h2 {
-        margin: 0;
-      }
-
-      pre {
-        background: #333;
-        border-radius: 5px;
-        color: #EEE;
-        padding: 1em;
-      }
-      pre code {
-        font-size: 25px;
-        background: transparent;
-      }
-
-      a, a:visited {
-        color: #145BB8;
-        text-decoration: none;
-      }
-
-      ul {
-        padding: 0;
-      }
-    </style>
+    <link href='/static/starburst.css' rel='stylesheet' type='text/css'>
+    <link href='/static/main.css' rel='stylesheet' type='text/css'>
+    <script defer src='/static/prettify.js'></script>
+    <script defer src='/static/main.js'></script>
   </head>
   <body>
     <header>
-      <h1>Content Security Policy</h1>
+      <h1><a href="/">Content Security Policy</a></h1>
       <h2>Welcome to the post-XSS world</h2>
     </header>
-    <nav>
-      
+    <nav class="">
+      <a href="/casestudies/">Case Studies</a>
+      <a>Recommendations</a>
+      <a href="/directives/">Directives</a>
     </nav>
 
-    <p>
-      If you run an even moderately valuable web site, you're under attack
-      almost constantly. You've taken every precaution, properly <a href="https://www.owasp.org/index.php/Data_Validation">validating
-      user input</a> and contextually escaping everything you write out to the
-      page. However, your advisaries are clever and numerous, and your time and
-      attention are limited. You will slip up. A small hole will open. It will
-      be discovered and exploited. You will be sad. So it goes.
-    </p>
+    <p>If you run an even moderately valuable web site, you&rsquo;re under attack almost
+constantly. You&rsquo;ve taken every precaution, properly <a href="https://www.owasp.org/index.php/Data_Validation">validating user
+input</a>, and contextually escaping everything you write out to
+the page. However, your advisaries are clever and numerous, and your time and
+attention are limited. You will slip up. A small hole will open. It will be
+discovered and exploited. You will be sad. So it goes.</p>
 
-    <p>Or does it?</p>
+<p>Or does it?</p>
 
-    <p>
-      Protecting your site by setting a <strong>Content Security Policy</strong>
-      will add significant depth to your defenses, mitigating the risk of
-      content injection attacks by radically reducing their potential effect.
-    </p>
+<p>Protecting your site by setting a <strong>Content Security Policy</strong> will add
+significant depth to your defenses, mitigating the risk of content injection
+attacks by radically reducing their potential effect.</p>
 
-    <h2>Content Securawhat?</h2>
-    <p>
-      The central vulnerability that content-injection attacks rely upon is a
-      browser's inability to distinguish between content you've intentionally
-      included on a site, and content that's been maliciously injected. That is,
-      <code>&lt;script&gt;doSomethingUseful();&lt;/script&gt;</code> looks
-      exactly the same to a browser as
-      <code>&lt;script&gt;alert('xss');&lt;/script&gt;</code> when included on a
-      page. Content Security Policy (CSP) gives you a way to teach the browser
-      about the content you <em>mean</em> to deliver, allowing it to block
-      everything that doesn't match a simple set of rules.
-    </p>
+<h2 id="content-securawhat">Content Securawhat?</h2>
 
-    <p>
-      These rules are delivered via an especially creatively named HTTP
-      header: <code>Content-Security-Policy</code>. The policy consists of
-      various directives that dictate how a certain resource type should be
-      handled, each separated by a semicolon.  A few examples should make the
-      broad syntax clear:
-    </p>
+<p>The central vulnerability that content-injection attacks rely upon is a
+browser&rsquo;s inability to distinguish between content you&rsquo;ve intentionally
+included on a site, and content that&rsquo;s been maliciously injected. That is,
+<code>&lt;script&gt;doSomethingUseful();&lt;/script&gt;</code> looks exactly the same to a browser as
+<code>&lt;script&gt;alert('xss');&lt;/script&gt;</code> when included on a page. Content Security
+Policy (CSP) gives you a way to teach the browser about the content you <em>mean</em>
+to deliver, allowing it to block everything that doesn&rsquo;t match a simple set of
+rules.</p>
 
-    <ul>
-      <li>
-        <p>
-          <strong>SSL Only</strong>: A developer wants to ensure that every page
-          of her site <em>only</em> loads resources over secure channels. She
-          can enforce this restriction by setting a policy that says "Only
-          render or execute resources that are delivered over HTTPS." Translated
-          into CSP, that reads:
-        </p>
-        <pre class="prettyprint lang-csp"><code>Content-Security-Policy: default-src https:</code></pre>
-      </li>
-      <li>
-        <p>
-          <strong>Lockdown</strong>: A bank wants to ensure that <em>only</em>
-          resources from its content delivery network load, and it's quite sure
-          that it only uses JavaScript, CSS, and images (no plugins, no
-          <code>XMLHttpRequest<code>, no web fonts, etc.). It would like a
-          policy that says "Block all resources of all types, except for images,
-          style, and script loaded from https://cdn.example.com." Translated to
-          CSP, that reads:
-        </p>
-        <pre class="prettyprint lang-csp"><code>Content-Security-Policy:
+<p>These rules are delivered via an especially creatively named HTTP header:
+<code>Content-Security-Policy</code>. The policy consists of various directives that
+dictate how a certain resource type should be handled, each separated by a
+semicolon.  A few examples should make the broad syntax clear:</p>
+
+<ul>
+  <li>
+    <p><strong>SSL Only</strong>: A developer wants to ensure that every page of her site <em>only</em>
+loads resources over secure channels. She can enforce this restriction by
+setting a policy that says &ldquo;Only render or execute resources that are
+delivered over HTTPS.&rdquo; Translated into CSP, that reads:</p>
+
+    <pre><code>Content-Security-Policy: default-src https:
+</code></pre>
+  </li>
+  <li>
+    <p><strong>Lockdown</strong>: A bank wants to ensure that <em>only</em> resources from its content
+delivery network load, and it&rsquo;s quite sure that it only uses JavaScript,
+CSS, and images (no plugins, no <code>XMLHttpRequest</code>, no web fonts, etc.). It
+would like a policy that says &ldquo;Block all resources of all types, except for
+images, style, and script loaded from https://cdn.example.com.&rdquo; Translated
+to CSP, that reads:</p>
+
+    <pre><code>Content-Security-Policy:
     default-src 'none';
     img-src https://cdn.example.com;
     script-src https://cdn.example.com;
-    style-src https://cdn.example.com</code></pre>
-      </li>
-    </ul>
+    style-src https://cdn.example.com&lt;/code&gt;&lt;/pre&gt;
+</code></pre>
+  </li>
+</ul>
 
 
-    <p>
-      First and foremost, block inline script by setting a policy that does not
-      include <code>'unsafe-inline'</code>. This ensures that even if an
-      attacker finds a hole through which to inject code, she'll have a tough
-      time doing anything useful with it.
-    </p>
-    <p>
-      This will require you to rework some of your own code to move inline event
-      handlers and blocks of inline script out into external files. That is,
-      you'll want to replace this:
-    </p>
-    <pre data-filename="index.html"><code>
-&lt;script&gt;
-  function doStuff() {
-    // [AMAZINGNESS GOES HERE]
-  }
-&lt;/script&gt;
-&hellip;
-&lt;a href="javascript:doStuff();"&gt;Click me!&lt;/a&gt;
-&lt;button onclick="doStuff();"&gt;Click me!&lt;/a&gt;
-    </code></pre>
-    <p>
-      with this:
-    </p>
-    <pre data-filename="index.html"><code>
-&lt;script src="index.js"&gt;&lt;/script&gt;
-&hellip;
-&lt;a href="javascript:doStuff();" <ins>id="link1"</ins>&gt;Click me!&lt;/a&gt;
-&lt;button onclick="doStuff();" <ins>id="button1"</ins>&gt;Click me!&lt;/a&gt;
-    </code></pre>
-    <pre data-filename="index.js"><code>
-function doStuff() {
-  // [AMAZINGNESS GOES HERE]
-}
 
-// Once the document's DOM is ready, attach event listeners.
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('#link1').addEventListener('click', doStuff);
-  document.querySelector('#button1').addEventListener('click', doStuff);
-});
-    </code></pre>
+    <footer>
+      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.0 specification</a>
+    </footer>
   </body>
+</html>

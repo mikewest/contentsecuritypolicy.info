@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf8'>
+    <meta http-equiv='Content-Security-Policy' content='default-src *'>
+    <title>
+      Content Security Policy
+      
+        &mdash; Directives
+      
+    </title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
+    <link href='/static/starburst.css' rel='stylesheet' type='text/css'>
+    <link href='/static/main.css' rel='stylesheet' type='text/css'>
+    <script defer src='/static/prettify.js'></script>
+    <script defer src='/static/main.js'></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Content Security Policy</a></h1>
+      <h2>Welcome to the post-XSS world</h2>
+    </header>
+    <nav class="directives">
+      <a href="/casestudies/">Case Studies</a>
+      <a>Recommendations</a>
+      <a href="/directives/">Directives</a>
+    </nav>
+
+    <p>A page&rsquo;s Content Security Policy is defined via a set of directives. The entire
+set is briefly defined below, click through each to get (lots) more detail:</p>
+
+<pre><code>Content-Security-Policy:
+
+  <a href="/directives/default-src.html"><code>default-src</code></a> [Sets a default source list, which
+               other directives might use as a
+               fallback];
+
+  <a href="/directives/script-src.html"><code>script-src</code></a>  [Whitelists trusted sources of
+               script, and governs use of `eval()`
+               and inline script];
+
+  <a href="/directives/object-src.html"><code>object-src</code></a>  [Whitelists trusted plugin content];
+
+  <a href="/directives/style-src.html"><code>style-src</code></a>   [Whitelisted CSS sources, and
+               controls use of inline style];
+
+  <a href="/directives/img-src.html"><code>img-src</code></a>     [Whitelists image sources];
+
+  <a href="/directives/media-src.html"><code>media-src</code></a>   [Whitelists video/audio sources, and
+               associated data (e.g. `track`)];
+
+  <a href="/directives/frame-src.html"><code>frame-src</code></a>   [Which origins can the current page
+               include in a frame?];
+
+  <a href="/directives/font-src.html"><code>font-src</code></a>    [Whitelisted web font sources];
+
+  <a href="/directives/connect-src.html"><code>connect-src</code></a> [Which endpoints can script connect
+               to via XHR, WebSockets, and etc?];
+
+  <a href="/directives/sandbox.html"><code>sandbox</code></a>     [Applies sandboxing flags to the
+               current page];
+
+  <a href="/directives/report-uri.html"><code>report-uri</code></a>  [Where should violation reports
+               be delivered?]
+</code></pre>
+
+
+    <footer>
+      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.0 specification</a>
+    </footer>
+  </body>
+</html>

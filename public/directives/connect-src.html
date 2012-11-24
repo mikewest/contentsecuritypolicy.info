@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang='en' dir='ltr'>
+  <head>
+    <meta charset='utf8'>
+    <meta http-equiv='Content-Security-Policy' content='default-src *'>
+    <title>
+      Content Security Policy
+      
+    </title>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata|Open+Sans:300italic,400,300,600,800' rel='stylesheet' type='text/css'>
+    <link href='/static/starburst.css' rel='stylesheet' type='text/css'>
+    <link href='/static/main.css' rel='stylesheet' type='text/css'>
+    <script defer src='/static/prettify.js'></script>
+    <script defer src='/static/main.js'></script>
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Content Security Policy</a></h1>
+      <h2>Welcome to the post-XSS world</h2>
+    </header>
+    <nav class="">
+      <a href="/casestudies/">Case Studies</a>
+      <a>Recommendations</a>
+      <a href="/directives/">Directives</a>
+    </nav>
+
+    <h2>
+  The <code>default-src</code> directive
+  &mdash;
+  (<a href='http://www.w3.org/TR/CSP/#default-src'>Spec @ W3C</a>)
+</h2>
+
+<p>The <code>connect-src</code> directive defines a list of targets to which you can connect
+via the various script interfaces that browsers make available:
+<a href="http://www.w3.org/TR/XMLHttpRequest/"><code>XMLHttpRequest</code></a>, <a href="http://dev.w3.org/html5/websockets/"><code>WebSocket</code></a>, and <a href="http://dev.w3.org/html5/eventsource/"><code>EventSource</code></a> are all
+effected. If other similar script interfaces are invented in the future, you
+should expect them to fall under <code>connect-src</code>&rsquo;s purview.</p>
+
+<h3 id="examples">Examples</h3>
+
+<p>Setting the value of the <code>connect-src</code> directive to <code>'none'</code> in your policy will
+block all connections to all servers, rendering <code>XMLHttpRequest</code> and other such
+script interfaces useless:</p>
+
+<pre><code>Content-Security-Policy: connect-src 'none'
+</code></pre>
+
+<p>Setting the value to a set of origins will ensure that script interfaces can
+only connect to those origins you specifically whitelist. For instance, here
+we&rsquo;ll limit connections to <code>api.example.com</code> over HTTPS:</p>
+
+<pre><code>Content-Security-Policy:
+    connect-src https://api.example.com
+</code></pre>
+
+<p>If you&rsquo;d like to create a WebSocket connection to <code>api.example.com</code>, you&rsquo;ll also
+need to whitelist the <code>ws:</code> or <code>wss:</code> (much preferred!) scheme, as appropriate:</p>
+
+<pre><code>Content-Security-Policy:
+    connect-src https://api.example.com
+                wss://api.example.com
+</code></pre>
+
+<h3 id="usage-recommendations">Usage Recommendations</h3>
+
+<p>If your site doesn&rsquo;t make use of JavaScript to grab data from various APIs, then
+setting a <code>connect-src</code> of <code>'none'</code> will protect you against a potential vector
+of attack. If you do make use of <code>WebSocket</code> or other script interfaces in order
+to build a more rich and interactive experience for your users, do make sure to
+lock <code>connect-src</code> down to those sources of data that you&rsquo;re actually making
+use of.</p>
+
+
+
+    <footer>
+      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.0 specification</a>
+    </footer>
+  </body>
+</html>
