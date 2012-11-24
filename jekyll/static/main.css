@@ -63,11 +63,25 @@ pre {
   border-radius: 5px;
   color: #EEE;
   padding: 1em;
+  position: relative;
 }
 
 pre code {
   font-size: 25px;
   background: transparent;
+}
+
+pre[data-filename]:after {
+  content: attr(data-filename);
+  background-color: #111;
+  right: 0;
+  top: 0;
+  position: absolute;
+  font-size: 16pt;
+  color: white;
+  padding: 2px 25px;
+  text-transform: uppercase;
+  border-radius: 0 5px 0 0;
 }
 
 a, a:visited {

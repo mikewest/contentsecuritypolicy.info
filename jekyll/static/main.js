@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var codes = document.querySelectorAll('pre');
   for (var i = 0; i < codes.length; ++i) {
     codes[i].classList.add('prettyprint');
-    codes[i].classList.add('lang-csp');
+    if (!codes[i].className.match(/lang-/))
+      codes[i].classList.add('lang-csp');
   }
 
   prettyPrint();

@@ -59,58 +59,44 @@ Policy. Allowing inline script by whitelisting `'unsafe-inline'` is a terrible
 idea, and guts much of the protection that Content Security Policy offers.
 
 This means that you'll need to move blocks of inline script in existing
-applications out into external files. For example, an HTML document containing
-the following code:
+applications out into external files. For example, an example HTML document
+containing the following code:
 
     <script>
-      function doAmazingThings() {
+      function doStuff() {
         // AMAZINGNESS!
       }
     </script>
-    <a href="javascript:doAmazingThings()">Click!</a>
-    <button onclick="doAmazingThings()">Click!</button>
+    <a href="javascript:doStuff()">Click!</a>
+    <button onclick="doStuff()">Click!</button>
+{:data-filename="example.html"}
+{: .lang-html}
 
-Has three distinct instances of inline JavaScript. The script block is obvious,
+has three distinct instances of inline JavaScript. The script block is obvious,
 less so are the `javascript:` URL in the link and the inline event handler
-(`onclick`) on the button.
+(`onclick`) on the button. Each of these can be trivially rewritten to avoid
+inlining. That might look something like:
 
+    <script src="example.js"></script>
+    <a href="javascript:doStuff();" id="link1">
+        Click me!</a>
+    <button onclick="doStuff();" id="button1">
+        Click me!</button>
+{:data-filename="example.html"}
+{: .lang-html}
 
-First and foremost, block inline script by setting a policy that does not
-include <code>'unsafe-inline'</code>. This ensures that even if an
-attacker finds a hole through which to inject code, she'll have a tough
-time doing anything useful with it.
-    </p>
-    <p>
-      This will require you to rework some of your own code to move inline event
-      handlers and blocks of inline script out into external files. That is,
-      you'll want to replace this:
-    </p>
-    <pre data-filename="index.html"><code>
-&lt;script&gt;
-  function doStuff() {
-    // [AMAZINGNESS GOES HERE]
-  }
-&lt;/script&gt;
-&hellip;
-&lt;a href="javascript:doStuff();"&gt;Click me!&lt;/a&gt;
-&lt;button onclick="doStuff();"&gt;Click me!&lt;/a&gt;
-    </code></pre>
-    <p>
-      with this:
-    </p>
-    <pre data-filename="index.html"><code>
-&lt;script src="index.js"&gt;&lt;/script&gt;
-&hellip;
-&lt;a href="javascript:doStuff();" <ins>id="link1"</ins>&gt;Click me!&lt;/a&gt;
-&lt;button onclick="doStuff();" <ins>id="button1"</ins>&gt;Click me!&lt;/a&gt;
-    </code></pre>
-    <pre data-filename="index.js"><code>
-function doStuff() {
-  // [AMAZINGNESS GOES HERE]
-}
+    function doStuff() {
+      // [AMAZINGNESS GOES HERE]
+    }
 
-// Once the document's DOM is ready, attach event listeners.
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('#link1').addEventListener('click', doStuff);
-  document.querySelector('#button1').addEventListener('click', doStuff);
-});
+    // Once the document's DOM is ready, attach event
+    // listeners to the relevant elements.
+    document.addEventListener('DOMContentLoaded',
+        function () {
+          document.querySelector('#link1')
+                  .addEventListener('click', doStuff);
+          document.querySelector('#button1')
+                  .addEventListener('click', doStuff);
+        });
+{:data-filename="example.js"}
+{: .lang-js}

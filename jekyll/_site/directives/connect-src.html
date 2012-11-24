@@ -34,7 +34,7 @@
 via the various script interfaces that browsers make available:
 <a href="http://www.w3.org/TR/XMLHttpRequest/"><code>XMLHttpRequest</code></a>, <a href="http://dev.w3.org/html5/websockets/"><code>WebSocket</code></a>, and <a href="http://dev.w3.org/html5/eventsource/"><code>EventSource</code></a> are all
 effected. If other similar script interfaces are invented in the future, you
-should expect them to fall under <code>connect-src</code>&#8217;s purview.</p>
+should expect them to fall under <code>connect-src</code>&rsquo;s purview.</p>
 
 <h3 id="examples">Examples</h3>
 
@@ -47,13 +47,13 @@ script interfaces useless:</p>
 
 <p>Setting the value to a set of origins will ensure that script interfaces can
 only connect to those origins you specifically whitelist. For instance, here
-we&#8217;ll limit connections to <code>api.example.com</code> over HTTPS:</p>
+we&rsquo;ll limit connections to <code>api.example.com</code> over HTTPS:</p>
 
 <pre><code>Content-Security-Policy:
     connect-src https://api.example.com
 </code></pre>
 
-<p>If you&#8217;d like to create a WebSocket connection to <code>api.example.com</code>, you&#8217;ll also
+<p>If you&rsquo;d like to create a WebSocket connection to <code>api.example.com</code>, you&rsquo;ll also
 need to whitelist the <code>ws:</code> or <code>wss:</code> (much preferred!) scheme, as appropriate:</p>
 
 <pre><code>Content-Security-Policy:
@@ -63,17 +63,17 @@ need to whitelist the <code>ws:</code> or <code>wss:</code> (much preferred!) sc
 
 <h3 id="usage-recommendations">Usage Recommendations</h3>
 
-<p>If your site doesn&#8217;t make use of JavaScript to grab data from various APIs, then
+<p>If your site doesn&rsquo;t make use of JavaScript to grab data from various APIs, then
 setting a <code>connect-src</code> of <code>'none'</code> will protect you against a potential vector
 of attack. If you do make use of <code>WebSocket</code> or other script interfaces in order
 to build a more rich and interactive experience for your users, do make sure to
-lock <code>connect-src</code> down to those sources of data that you&#8217;re actually making
+lock <code>connect-src</code> down to those sources of data that you&rsquo;re actually making
 use of.</p>
 
 
 
     <footer>
-      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.1 specification</a>
+      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.0 specification</a>
     </footer>
   </body>
 </html>

@@ -24,8 +24,8 @@
       <a href="/directives/">Directives</a>
     </nav>
 
-    <p>If you run an even moderately valuable web site, you&#8217;re under attack almost
-constantly. You&#8217;ve taken every precaution, properly <a href="https://www.owasp.org/index.php/Data_Validation">validating user
+    <p>If you run an even moderately valuable web site, you&rsquo;re under attack almost
+constantly. You&rsquo;ve taken every precaution, properly <a href="https://www.owasp.org/index.php/Data_Validation">validating user
 input</a>, and contextually escaping everything you write out to
 the page. However, your advisaries are clever and numerous, and your time and
 attention are limited. You will slip up. A small hole will open. It will be
@@ -40,12 +40,12 @@ attacks by radically reducing their potential effect.</p>
 <h2 id="content-securawhat">Content Securawhat?</h2>
 
 <p>The central vulnerability that content-injection attacks rely upon is a
-browser&#8217;s inability to distinguish between content you&#8217;ve intentionally
-included on a site, and content that&#8217;s been maliciously injected. That is,
+browser&rsquo;s inability to distinguish between content you&rsquo;ve intentionally
+included on a site, and content that&rsquo;s been maliciously injected. That is,
 <code>&lt;script&gt;doSomethingUseful();&lt;/script&gt;</code> looks exactly the same to a browser as
 <code>&lt;script&gt;alert('xss');&lt;/script&gt;</code> when included on a page. Content Security
 Policy (CSP) gives you a way to teach the browser about the content you <em>mean</em>
-to deliver, allowing it to block everything that doesn&#8217;t match a simple set of
+to deliver, allowing it to block everything that doesn&rsquo;t match a simple set of
 rules.</p>
 
 <p>These rules are delivered via an especially creatively named HTTP header:
@@ -57,18 +57,18 @@ semicolon.  A few examples should make the broad syntax clear:</p>
   <li>
     <p><strong>SSL Only</strong>: A developer wants to ensure that every page of her site <em>only</em>
 loads resources over secure channels. She can enforce this restriction by
-setting a policy that says &#8220;Only render or execute resources that are
-delivered over HTTPS.&#8221; Translated into CSP, that reads:</p>
+setting a policy that says &ldquo;Only render or execute resources that are
+delivered over HTTPS.&rdquo; Translated into CSP, that reads:</p>
 
     <pre><code>Content-Security-Policy: default-src https:
 </code></pre>
   </li>
   <li>
     <p><strong>Lockdown</strong>: A bank wants to ensure that <em>only</em> resources from its content
-delivery network load, and it&#8217;s quite sure that it only uses JavaScript,
+delivery network load, and it&rsquo;s quite sure that it only uses JavaScript,
 CSS, and images (no plugins, no <code>XMLHttpRequest</code>, no web fonts, etc.). It
-would like a policy that says &#8220;Block all resources of all types, except for
-images, style, and script loaded from https://cdn.example.com.&#8221; Translated
+would like a policy that says &ldquo;Block all resources of all types, except for
+images, style, and script loaded from https://cdn.example.com.&rdquo; Translated
 to CSP, that reads:</p>
 
     <pre><code>Content-Security-Policy:
@@ -83,7 +83,7 @@ to CSP, that reads:</p>
 
 
     <footer>
-      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.1 specification</a>
+      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.0 specification</a>
     </footer>
   </body>
 </html>

@@ -31,10 +31,10 @@
 </h2>
 
 <p>The <code>default-src</code> directive, as you might imagine, defines a default source list
-that some other directives will fall back onto if they&#8217;re not explicitly
+that some other directives will fall back onto if they&rsquo;re not explicitly
 specified. Setting a default source list will force the browser to enforce all
 of the following directives, using their value if present in the policy, or the
-value of <code>default-src</code> if they&#8217;re absent:</p>
+value of <code>default-src</code> if they&rsquo;re absent:</p>
 
 <ul>
   <li><a href="/directives/connect-src.html"><code>connect-src</code></a></li>
@@ -56,7 +56,7 @@ only load from its own origin by setting the following policy:</p>
 <pre><code>Content-Security-Policy: default-src 'self'
 </code></pre>
 
-<p><code>img-src</code> isn&#8217;t listed in the policy, so it uses the default source list. Ditto
+<p><code>img-src</code> isn&rsquo;t listed in the policy, so it uses the default source list. Ditto
 for the other directives listed above.</p>
 
 <hr />
@@ -68,17 +68,17 @@ specific resource type. For example, given :</p>
                          img-src https://example.com
 </code></pre>
 
-<p>The default source list contains <code>'self'</code>, meaning that only the current page&#8217;s
+<p>The default source list contains <code>'self'</code>, meaning that only the current page&rsquo;s
 origin is whitelisted. The list of allowed image sources contains
-<code>https://example.com</code>, so we can load images from that origin. Note that there&#8217;s
-no funky inheritance: <code>'self'</code> isn&#8217;t listed explicitly in <code>img-src</code>, so it&#8217;s not
+<code>https://example.com</code>, so we can load images from that origin. Note that there&rsquo;s
+no funky inheritance: <code>'self'</code> isn&rsquo;t listed explicitly in <code>img-src</code>, so it&rsquo;s not
 an acceptable source of images.</p>
 
 <h3 id="usage-recommendations">Usage Recommendations</h3>
 
 <p>The most secure way to roll out a Content Security Policy is to begin by setting
-<code>default-src</code>&#8217;s value to <code>'none'</code>. This locks down the page you&#8217;re protecting,
-ensuring that resources won&#8217;t load unless you explicitly whitelist them. As an
+<code>default-src</code>&rsquo;s value to <code>'none'</code>. This locks down the page you&rsquo;re protecting,
+ensuring that resources won&rsquo;t load unless you explicitly whitelist them. As an
 example, look at the policy set for this very page:</p>
 
 <pre><code>Content-Security-Policy:
@@ -89,14 +89,14 @@ example, look at the policy set for this very page:</p>
 </code></pre>
 
 <p>We begin by locking things down, and then allow only images, script, and style,
-loaded only from this website&#8217;s origin. Directives that aren&#8217;t specified
+loaded only from this website&rsquo;s origin. Directives that aren&rsquo;t specified
 (<code>object-src</code>, for instance) fall back to the <code>default-src</code> source list, and
 are blocked. We highly recommend you do the same.</p>
 
 
 
     <footer>
-      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.1 specification</a>
+      <a href="http://w3.org/TR/CSP">The Content Security Policy 1.0 specification</a>
     </footer>
   </body>
 </html>
